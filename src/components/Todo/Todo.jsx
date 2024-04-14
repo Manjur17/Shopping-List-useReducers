@@ -1,9 +1,12 @@
 import { bindActionCreators } from 'redux';
-import { removeTodo, editTodo } from '../../actions/index';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import todoSlice from "../../slices/todoSlice";
+
 function Todo({ title, id }) {
     const dispatch = useDispatch();
+    const { editTodo, removeTodo } = todoSlice.actions;
+
     const actions = bindActionCreators({ removeTodo, editTodo }, dispatch);
 
     const [isEditting, setIsEditting] = useState(false);
@@ -34,7 +37,3 @@ function Todo({ title, id }) {
 }
 
 export default Todo;
-
-// 1. implement the deletion of todos
-// 2. try to replace calling dispatch directly (may be bindActionCreator ) ??
-// 3. Implement edit todo functionality
